@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="sgn-container">
+    <div class="lgn-title">
+        <p>Join theBlog now.</p>
+    </div>
+
+    <hr class="separator">
+
+    <div class="lgn-image-container">
+        <img class="lgn-image" src="img/logo.png" alt="theBLOG">
+    </div>
+
+    <form action="" method="POST" class="lgn-form">
+        <input type="text" name="name" placeholder="Complete name" class="lgn-form-input lgn-form-input-txt">
+        <input type="text" name="login" placeholder="User Name" class="lgn-form-input lgn-form-input-txt">
+        <input type="password" name="password" placeholder="Password" class="lgn-form-input lgn-form-input-txt">
+        <input type="submit" value="Sign In" class="lgn-form-input lgn-form-input-sbmt sgn-input">
+    </form>
+
+    <hr class="separator">
+
+    <div class="lgn-footer">
+        <p>Have an account?<a href=""> Log In »</a></p>
+    </div>
+</div>
+
+{% endblock %}

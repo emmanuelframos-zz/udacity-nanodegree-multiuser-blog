@@ -1,0 +1,173 @@
+body,
+header,
+nav,
+footer,
+section,
+article,
+div {
+    box-sizing: border-box;
+}
+
+body {
+  padding-bottom:20px;
+  background:#333;
+  color:#666;
+}
+
+.lgn-title {
+	text-align: center;
+	padding-top: 1em;
+}
+
+.lgn-title p {
+	font-size: 17px;
+}
+
+.lgn-container {
+	width: 40%;
+	margin: auto;
+	margin-top: 15em;
+	background-color: #fff;
+    border-radius: 13px;
+    height: 25em;
+}
+
+.lgn-form {
+	display: flex;
+	flex-direction: column;
+	width: 45%;
+    margin: auto;
+}
+
+.lgn-image-container {
+	text-align: center;
+}
+
+.lgn-image {
+	width: 7em;
+}
+
+.lgn-form-input {
+	border-radius: 4px;
+    height: 2.4em;
+    margin-top: 1em;
+    border: 1px solid;
+}
+
+.lgn-form-input-txt {
+	padding-left: 3px;
+}
+
+.lgn-form-input-sbmt {
+	height: 3em;
+	font-size: 15px;
+	color: black;
+}
+
+.lgn-rememberme {
+	margin-top: 1em;
+}
+
+.lgn-footer {
+	text-align: center;
+}
+
+.lgn-rememberme span {
+	margin-left: 2px;
+}
+
+.sgn-input {
+	margin-top: 2em;
+}
+
+.sgn-container {
+	width: 40%;
+	margin: auto;
+	margin-top: 15em;
+	background-color: #fff;
+    border-radius: 13px;
+    height: 27em;
+}
+
+.container-main {
+	background:#f4f4f4;
+	overflow:auto;
+	border-radius:10px;
+}
+
+.logo {
+	padding: 15px 0;
+}
+
+.navbar {
+	margin-bottom:20px;
+	border-radius:0;
+	border:0;
+	background:#f4f4f4;
+}
+
+.img-responsive {
+	width: 100%;
+}
+
+.post-info {
+	background:#333;
+	color:#fff;
+	padding:5px;
+	border:#ccc 1px solid;
+}
+
+.post-row {
+	margin-bottom: 2em;
+	padding: 0 2em;
+}
+
+.button-medium {
+	width: 78px;
+	height: 32px;
+	margin: 0 0.5em 0 0;
+}
+
+.post-subject {
+	color: #337ab7;
+	font-weight: bold;
+}
+
+.post-text {
+	margin-bottom: 1em;
+}
+
+.separator {
+	margin: 1em 0;
+}
+
+.post-container {
+	margin-bottom: 30px;
+}
+
+.posts-container {
+	padding: 0 2em;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.post-container-link {
+	margin: 0 2em 0 0.3em;
+	outline: none;
+}
+
+a:focus, a:hover {
+	text-decoration: none;
+}
+
+.pst-btn {
+	width: 7em;
+    height: 3em;
+    margin-right: 0.5em;
+}
+
+.pst-text {
+	overflow: auto;
+}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="lgn-container">
+    <div class="lgn-title">
+        <p>Enter on theBlog</p>
+    </div>
+
+    <hr class="separator">
+
+    <div class="lgn-image-container">
+        <img class="lgn-image" src="img/logo.png" alt="theBLOG">
+    </div>
+
+    <form action="" method="POST" class="lgn-form">
+        <input type="text" name="login" placeholder="User Name" class="lgn-form-input lgn-form-input-txt">
+        <input type="password" name="password" placeholder="Password" class="lgn-form-input lgn-form-input-txt">
+        <div class="lgn-rememberme">
+            <input type="checkbox" checked="checked" name="rememberme" value="rememberme"><span>Remember me</span>
+        </div>
+        <input type="submit" value="Enter" class="lgn-form-input lgn-form-input-sbmt">
+    </form>
+
+    <hr class="separator">
+
+    <div class="lgn-footer">
+        <p>Don't have an account?<a href=""> Sign In »</a></p>
+    </div>
+</div>
+
+{% endblock %}
