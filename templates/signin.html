@@ -13,17 +13,21 @@
         <img class="lgn-image" src="img/logo.png" alt="theBLOG">
     </div>
 
-    <form action="" method="POST" class="lgn-form">
-        <input type="text" name="name" placeholder="Complete name" class="lgn-form-input lgn-form-input-txt">
-        <input type="text" name="login" placeholder="User Name" class="lgn-form-input lgn-form-input-txt">
+    <form action="/signIn" method="POST" class="lgn-form">
+        <input type="text" name="fullname" placeholder="Full Name" class="lgn-form-input lgn-form-input-txt">
+        <input type="text" name="user" placeholder="User Name" class="lgn-form-input lgn-form-input-txt">
         <input type="password" name="password" placeholder="Password" class="lgn-form-input lgn-form-input-txt">
         <input type="submit" value="Sign In" class="lgn-form-input lgn-form-input-sbmt sgn-input">
     </form>
 
+    <div class="lgn-error">
+        <span class="lgn-error-text">{{error_message}}</span>
+    </div>
+
     <hr class="separator">
 
     <div class="lgn-footer">
-        <p>Have an account?<a href=""> Log In »</a></p>
+        <p>Have an account?<a href="/login"> Log In »</a></p>
     </div>
 </div>
 

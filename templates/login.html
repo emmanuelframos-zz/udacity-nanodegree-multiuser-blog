@@ -13,19 +13,23 @@
         <img class="lgn-image" src="img/logo.png" alt="theBLOG">
     </div>
 
-    <form action="" method="POST" class="lgn-form">
-        <input type="text" name="login" placeholder="User Name" class="lgn-form-input lgn-form-input-txt">
-        <input type="password" name="password" placeholder="Password" class="lgn-form-input lgn-form-input-txt">
+    <form action="/login" method="POST" class="lgn-form">
+        <input type="text" name="user" placeholder="User Name" value="emmanuelf" class="lgn-form-input lgn-form-input-txt">
+        <input type="password" name="password" placeholder="Password" value="pythoncit" class="lgn-form-input lgn-form-input-txt">
         <div class="lgn-rememberme">
-            <input type="checkbox" checked="checked" name="rememberme" value="rememberme"><span>Remember me</span>
+            <input type="checkbox" checked="checked" name="rememberme" value="true"><span>Remember me</span>
         </div>
         <input type="submit" value="Enter" class="lgn-form-input lgn-form-input-sbmt">
     </form>
 
+    <div class="lgn-error">
+        <span class="lgn-error-text">{{error_message}}</span>
+    </div>
+
     <hr class="separator">
 
     <div class="lgn-footer">
-        <p>Don't have an account?<a href=""> Sign In »</a></p>
+        <p>Don't have an account?<a href="/signIn"> Sign In »</a></p>
     </div>
 </div>
 

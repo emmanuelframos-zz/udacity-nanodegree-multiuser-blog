@@ -29,7 +29,7 @@ body {
 	margin-top: 15em;
 	background-color: #fff;
     border-radius: 13px;
-    height: 25em;
+    height: 27em;
 }
 
 .lgn-form {
@@ -76,6 +76,16 @@ body {
 	margin-left: 2px;
 }
 
+.lgn-error {
+    text-align: center;
+    margin-top: 0.5em;
+}
+
+.lgn-error-text {
+    color: red;
+    font-weight: bold;
+}
+
 .sgn-input {
 	margin-top: 2em;
 }
@@ -86,13 +96,14 @@ body {
 	margin-top: 15em;
 	background-color: #fff;
     border-radius: 13px;
-    height: 27em;
+    height: 29em;
 }
 
 .container-main {
 	background:#f4f4f4;
 	overflow:auto;
 	border-radius:10px;
+    min-height: 84vh;
 }
 
 .logo {
@@ -170,4 +181,10 @@ a:focus, a:hover {
 
 .pst-text {
 	overflow: auto;
+}
+
+.logout {
+    float: right;
+    margin-top: -2em;
+    margin-right: 1em;
 }

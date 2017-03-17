@@ -6,11 +6,11 @@ threadsafe: true
 
 handlers:
 - url: /css
-  static_dir: static/css  
+  static_dir: static/css
 - url: /fonts
-  static_dir: static/fonts  
+  static_dir: static/fonts
 - url: /img
-  static_dir: static/img 
+  static_dir: static/img
 - url: /js
   static_dir: static/js
 - url: /.*
@@ -19,6 +19,6 @@ handlers:
 libraries:
 - name: jinja2
   version: latest
-
+ 
 - name: PIL
   version: "1.1.7"
