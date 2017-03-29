@@ -2,56 +2,114 @@
 
 {% block content %}
 
-	<header>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <img class="logo" src="img/logo.png" alt="theBLOG">
-          </div>
-          <div class="col-md-6">
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img class="logo" src="/img/logo.png" alt="theBLOG">
+        </div>
+        <div class="col-md-6">
 
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container container-main">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active pointer"><a href="/">Home</a></li>
+            <li class="pointer"><a href="/blogPost/create">Post!</a></li>
+          </ul>
+        </div>
+        <div class="user-header">
+          <div class="welcome">
+              <p>Welcome, <b>{{user}}</b></p>
+          </div>
+          <div class="logout">              
+              <a href="/logout">Logout</a>
           </div>
         </div>
       </div>
-    </header>
+    </nav>
+    
+		<div class="row col-md-12 posts-container">           
+        {% for post in posts %}
+				<div id="{{loop.index}}" class="well post-container">              
+				  <h3 class="post-subject">{{post.title}}</h3>
+				  <p class="post-info"><i class="glyphicon glyphicon-time"></i> Posted by {{post.owner.user}} on {{post.created.strftime('%m-%d-%Y %H:%M')}}</p>
+				  <hr class="separator">
+				  <p>{{post.content}}</p>
+				  <div class="main-actions">
+            {% if not post.is_author %}
+              {% if not post.liked %}
+                <!-- Like -->
+                <form id="like-form" method="POST" action="/blogPost/like">
+                  <input type="hidden" name="like">
+                  <input type="hidden" name="id_post" value="{{post.key.id()}}">
+                  <a href="javascript:{}" onclick="document.getElementById('like-form').submit(); return false;" class="glyphicon glyphicon-heart-empty pointer"><span class="post-container-link">Like</span></a>
+                </form>
+              {% else %}
+                <!-- UnLike -->
+                <form id="unlike-form" method="POST" action="/blogPost/like">
+                  <input type="hidden" name="unlike">
+                  <input type="hidden" name="id_post" value="{{post.key.id()}}">
+                  <a href="javascript:{}" onclick="document.getElementById('unlike-form').submit(); return false;" class="glyphicon glyphicon-heart pointer"><span class="post-container-link">Unlike</span></a>
+                </form>
+              {% endif %}
+            {% endif %}
 
-    <div class="container container-main">
-	    <nav class="navbar navbar-default">
-	      <div class="container-fluid">
-	        <div class="navbar-header">
-	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	            <span class="sr-only">Toggle navigation</span>
-	            <span class="icon-bar"></span>
-	          </button>
-	        </div>
-	        <div id="navbar" class="collapse navbar-collapse">
-	          <ul class="nav navbar-nav">
-	            <li class="active pointer"><a href="/">Home</a></li>
-	            <li class="pointer"><a href="/post">Post!</a></li>
-	          </ul>
-	        </div><!--/.nav-collapse -->
-          <div class="logout">
-              <a href="/logout">Logout</a>
+            {% if post.is_author %}
+              <!-- Edit -->
+              <a href="/blogPost/get?id={{post.key.id()}}" class="glyphicon glyphicon-pencil pointer"><span class="post-container-link">Edit</span></a>
+
+              <!-- Remove -->
+              <form id="remove-form" method="POST" action="/blogPost/remove">
+                <input type="hidden" name="id" value="{{post.key.id()}}">
+                <a href="javascript:{}" onclick="document.getElementById('remove-form').submit(); return false;" class="glyphicon glyphicon-remove pointer"><span class="post-container-link">Remove</span></a>
+              </form>
+            {% endif %}  
+            
+            <p class="like">{{post.likes|length}} like(s) on this post</p>            
+          </div> 
+					<div class="comment-form">
+              <form class="form-inline" method="POST" action="/blogPost/comment">
+                <div class="form-group">
+                  <input type="text" name="comment" class="form-control input-comment" placeholder="Enter comment">
+                  <input type="hidden" name="id" value="{{post.key.id()}}">
+                </div>
+                <button type="submit" class="btn-comment btn btn-default">Add</button>
+              </form>
           </div>
-	      </div>
-	    </nav>
+          
+          {% for comment in post.comments %}
+          <hr class="comment-separator">
+          <p class="post-info"><i class="glyphicon glyphicon-time"></i> Commented by {{comment.author}} on {{comment.created.strftime('%m-%d-%Y %H:%M')}}</p>
+          <form method="POST" action="/blogPost/comment/edit">
+            {% if comment.is_author %}
+              <textarea name="comment_desc" class="comment">{{comment.comment}}</textarea>
+            {% else %}            
+              <p>{{comment.comment}}</p>
+            {% endif %}  
+            <input type="hidden" name="id_comment" value="{{comment.key.id()}}">
+            <input type="hidden" name="id_post" value="{{post.key.id()}}">
+            {% if comment.is_author %}
+              <button type="submit" name="update-comment" class="btn-edit-comment btn btn-default">Save</button>
+              <button type="submit" name="remove-comment" class="btn-edit-comment btn btn-default">Remove</button>
+            {% endif %}
+          </form>
+          {% endfor %}                  
 
-	    <div class="row">
-			<div class="col-md-12 posts-container">
-          {% for post in posts %}
-    				<div class="well post-container">
-    				  <h3 class="post-subject">{{post.subject}}</h3>
-    				  <p class="post-info"><i class="glyphicon glyphicon-time"></i> Posted by {{post.author.fullname}} on {{post.created.strftime('%m-%d-%Y %H:%M:%S')}}</p>
-    				  <hr class="separator">
-    				  <p>{{post.content}}</p>
-    				  <!-- glyphicon-heart-heart -->
-    				  <a class="glyphicon glyphicon-heart-empty pointer"><span class="post-container-link">Like</span></a>
-    				  <a href="/post?id={{post.key().id()}}" class="glyphicon glyphicon-pencil pointer"><span class="post-container-link">Edit</span></a>
-    				  <a class="glyphicon glyphicon-remove pointer"><span class="post-container-link">Remove</span></a>
-    				</div>
-          {% endfor %}
-			</div>
-		</div>
+				</div>  
+        {% endfor %}          
+		</div>        
 	</div>
-
 {% endblock %}

@@ -1,17 +1,41 @@
-from google.appengine.ext import db
+from google.appengine.ext import ndb
 from entities.user import User
 
-class Post(db.Model):
-    author = db.ReferenceProperty(User, collection_name='posts')
-    subject = db.StringProperty(required = True)
-    content = db.TextProperty(required = True)
-    created = db.DateTimeProperty(auto_now_add = True)
-    last_modified = db.DateTimeProperty(auto_now = True)
+class Post(ndb.Model):
+    """
+    Model class that represents a blog post
+    """
+    author = ndb.StringProperty(required = True)
+    title = ndb.StringProperty(required = True)
+    content = ndb.TextProperty(required = True)
+    likes = ndb.StringProperty(repeated = True)
+    created = ndb.DateTimeProperty(auto_now_add = True)
+    last_modified = ndb.DateTimeProperty()
 
     @staticmethod
     def get_posts():
-         return db.GqlQuery('select * from Post order by created desc')
+        """
+        Get a post list
+        :return: Post[]
+        """
+        return ndb.gql('select * from Post order by created desc')
 
     @staticmethod
     def get_by_id(id):
-        return db.GqlQuery('select * from Post where ID = :post_id', post_id=id)
+        """
+        Get a post by id
+        :param id: Post id
+        :return: Post
+        """
+        return ndb.Key('Post', int(id)).get()
+
+    @staticmethod
+    def is_post_owner(user_desc, post):
+        """
+        Checks if user passed is a post owner
+        :param user_desc: User login
+        :param post: Post object
+        :return: True or False
+        """
+        user = User.get_user(user_desc)
+        return post.author == user.user

@@ -1,4 +1,4 @@
-application: udacity-cs253
+application: udacity-theblog
 version: 1
 runtime: python27
 api_version: 1
@@ -13,7 +13,7 @@ handlers:
   static_dir: static/img
 - url: /js
   static_dir: static/js
-- url: /.*
+- url: .*
   script: blog.app
 
 libraries:

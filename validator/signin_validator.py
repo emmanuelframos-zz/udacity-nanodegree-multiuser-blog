@@ -1,4 +1,5 @@
 import re
+from entities.user import User
 
 class SignInValidator():
 
@@ -16,7 +17,15 @@ class SignInValidator():
             params['error_message'] = 'That\'''s not a valid password'
             return True
 
+        if SignInValidator.user_name_exists(user):
+            params['error_message'] = 'User already exists'
+            return True
+
         return False
+
+    @staticmethod
+    def user_name_exists(username):
+        return User.get_user(username)
 
     @staticmethod
     def valid_username(user):

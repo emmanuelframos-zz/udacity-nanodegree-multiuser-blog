@@ -6,11 +6,22 @@ from entities.user import User
 import datetime
 
 class SignIn(BlogHandler):
+    """
+    Class that handles a sign in route
+    """
 
     def get(self):
+        """
+        Renders the sign in page
+        :return: 
+        """
         self.render('signin.html')
 
     def post(self):
+        """
+        Creates a user entry if user date is valid, if no sends an error message
+        :return: 
+        """
         user = self.request.get('user')
         fullname = self.request.get('fullname')
         password = self.request.get('password')
@@ -27,4 +38,7 @@ class SignIn(BlogHandler):
             u = User(user=user, fullname=fullname, hash=hash, salt=salt, created=datetime.datetime.now())
             u.put()
 
-            self.redirect('/main?user=' + user)
+            self.response.set_cookie('user_id', u.hash)
+            self.response.set_cookie('user_desc', u.user)
+
+            self.redirect('/main')

@@ -29,7 +29,7 @@ body {
 	margin-top: 15em;
 	background-color: #fff;
     border-radius: 13px;
-    height: 27em;
+    height: 24em;
 }
 
 .lgn-form {
@@ -183,8 +183,54 @@ a:focus, a:hover {
 	overflow: auto;
 }
 
-.logout {
+.user-header {
+	display: flex;
     float: right;
     margin-top: -2em;
-    margin-right: 1em;
+    margin-right: 2em;
+}
+
+.welcome {
+	margin-right: 1em;
+}
+
+.comment-form {
+    margin-top: 0.5em;
+}
+
+.input-comment {
+	width: 69em !important;
+}
+
+.main-actions {
+	display: flex;
+}
+
+.btn-comment {
+	width: 5em;
+}
+
+.btn-edit-comment {
+	width: 5.5em;
+}
+
+.comment-separator {
+	margin: 1em 0;
+}
+
+.comment {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 1em 0.5em;
+    margin: 5px 0;
+    width: 74.7em;
+    overflow: auto;
+}
+
+.like {
+	color: #337ab7;
+}
+
+.well {
+	border: 1px solid #666 !important;
 }

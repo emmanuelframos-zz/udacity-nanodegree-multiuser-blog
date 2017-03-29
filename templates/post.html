@@ -6,7 +6,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <img class="logo" src="img/logo.png" alt="theBLOG">
+            <img class="logo" src="/img/logo.png" alt="theBLOG">
           </div>
           <div class="col-md-6">
 
@@ -17,21 +17,17 @@
 
     <div class="container container-main">
       <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
+        <div class="container-fluid">         
           <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
               <li class="pointer"><a href="/">Home</a></li>
-              <li class="active pointer"><a href="/post">Post!</a></li>
+              <li class="active pointer"><a href="/blogPost/create">Post!</a></li>
             </ul>
           </div>
-          <div class="logout">
-              <a href="/logout">Logout</a>
+          <div class="user-header">            
+            <div class="logout">              
+                <a href="/logout">Logout</a>
+            </div>          
           </div>
         </div>
       </nav>
@@ -39,20 +35,24 @@
       <div class="row post-row">
         <div class="col-md-12">
           <h2>Post It!</h2>
-          <form action="/post" method="POST">
+          <form action="/blogPost/create" method="POST">
              <div class="form-group">
-              <label>Subject</label>
-              <input type="text" name="subject" value="{{post.subject}}" class="form-control">
+              <label>Title</label>
+              <input type="text" name="title" value="{{post.title}}" class="form-control">
             </div>
             <div class="form-group">
-              <label>Blog</label>
+              <label>Content</label>
               <textarea rows="15" name="content" class="form-control pst-text">{{post.content}}</textarea>
             </div>
             <div class="lgn-error">
                 <span class="lgn-error-text">{{error_message}}</span>
             </div>
-            <button type="submit" name="save-post" class="btn btn-default pst-btn">Save</button>
-            <button type="submit" name="cancel-post" class="btn btn-default pst-btn">Cancel</button>
+            {% if post.content|length > 0 %}
+              <input type="hidden" name="update" value="true">
+              <input type="hidden" name="id" value="{{post.key.id()}}">
+            {% endif %}
+            <button type="submit" name="create" class="btn btn-default pst-btn">Save</button>
+            <button type="submit" class="btn btn-default pst-btn">Cancel</button>
           </form>
         </div>
       </div>
