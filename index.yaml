@@ -15,8 +15,3 @@ indexes:
   - name: post
   - name: created
     direction: desc
-
-- kind: Post
-  properties:
-  - name: created
-    direction: desc
