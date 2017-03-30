@@ -1,15 +1,16 @@
 from google.appengine.ext import ndb
 from entities.user import User
 
+
 class Post(ndb.Model):
     """
     Model class that represents a blog post
     """
-    author = ndb.StringProperty(required = True)
-    title = ndb.StringProperty(required = True)
-    content = ndb.TextProperty(required = True)
-    likes = ndb.StringProperty(repeated = True)
-    created = ndb.DateTimeProperty(auto_now_add = True)
+    author = ndb.StringProperty(required=True)
+    title = ndb.StringProperty(required=True)
+    content = ndb.TextProperty(required=True)
+    likes = ndb.StringProperty(repeated=True)
+    created = ndb.DateTimeProperty(auto_now_add=True)
     last_modified = ndb.DateTimeProperty()
 
     @staticmethod
@@ -30,12 +31,12 @@ class Post(ndb.Model):
         return ndb.Key('Post', int(id)).get()
 
     @staticmethod
-    def is_post_owner(user_desc, post):
+    def is_post_owner(hash, post):
         """
         Checks if user passed is a post owner
-        :param user_desc: User login
+        :param user_id: User login
         :param post: Post object
         :return: True or False
         """
-        user = User.get_user(user_desc)
+        user = User.get_by_hash(hash)
         return post.author == user.user

@@ -1,11 +1,14 @@
+import time
+
 from validator.signin_validator import SignInValidator
-from handler.blog_handler import BlogHandler
+from handler.base import BlogHandler
 from utils.hash_utils import HashUtils
 from entities.user import User
 
 import datetime
 
-class SignIn(BlogHandler):
+
+class SignInHandler(BlogHandler):
     """
     Class that handles a sign in route
     """
@@ -19,7 +22,8 @@ class SignIn(BlogHandler):
 
     def post(self):
         """
-        Creates a user entry if user date is valid, if no sends an error message
+        Creates a user entry if user date is valid, 
+        if no sends an error message
         :return: 
         """
         user = self.request.get('user')
@@ -27,16 +31,21 @@ class SignIn(BlogHandler):
         password = self.request.get('password')
 
         params = dict()
-        have_error = SignInValidator.user_data_are_valid(fullname, user, password, params)
+        have_error = SignInValidator\
+            .user_data_are_valid(fullname, user, password, params)
 
         if have_error:
             self.render('signin.html', **params)
         else:
-            salt = HashUtils.gen_salt();
+            salt = HashUtils.gen_salt()
             hash = HashUtils.crypt(password, salt)
 
-            u = User(user=user, fullname=fullname, hash=hash, salt=salt, created=datetime.datetime.now())
+            u = User(user=user, fullname=fullname,
+                     hash=hash, salt=salt,
+                     created=datetime.datetime.now())
             u.put()
+
+            time.sleep(2)
 
             self.response.set_cookie('user_id', u.hash)
             self.response.set_cookie('user_desc', u.user)

@@ -1,16 +1,16 @@
 import webapp2
 
-from routes.home import Home
-from routes.signin import SignIn
-from routes.login import Login
-from routes.main import Main
-from routes.post import NewPost
-from routes.post import GetPost
-from routes.post import RemovePost
-from routes.post_comment import PostComment
-from routes.post_comment import EditPostComment
-from routes.logout import Logout
-from routes.post_like import PostLike
+from handler.home import HomeHandler
+from handler.login import LoginHandler
+from handler.logout import LogoutHandler
+from handler.get_post import GetPostHandler
+from handler.new_post import NewPostHandler
+from handler.remove_post import RemovePostHandler
+from handler.edit_post_comment import EditPostCommentHandler
+from handler.new_post_comment import NewPostCommentHandler
+from handler.post_like import PostLikeHandler
+from handler.signin import SignInHandler
+from handler.main import MainHandler
 
 '''
 Routes Configuration
@@ -28,17 +28,17 @@ PostLike: create or remove a post like
 '''
 
 app = webapp2.WSGIApplication([
-   ('/', Home),
-   ('/login', Login),
-   ('/logout', Logout),
-   ('/signIn', SignIn),
-   ('/main', Main),
-   ('/blogPost/create', NewPost),
-   ('/blogPost/get/?', GetPost),
-   ('/blogPost/remove', RemovePost),
-   ('/blogPost/comment', PostComment),
-   ('/blogPost/comment/edit', EditPostComment),
-   ('/blogPost/like', PostLike),
-   ('/blogPost/unlike', PostLike)
+   ('/', HomeHandler),
+   ('/login', LoginHandler),
+   ('/logout', LogoutHandler),
+   ('/signIn', SignInHandler),
+   ('/main', MainHandler),
+   ('/blogPost/create', NewPostHandler),
+   ('/blogPost/get/?', GetPostHandler),
+   ('/blogPost/remove', RemovePostHandler),
+   ('/blogPost/comment', NewPostCommentHandler),
+   ('/blogPost/comment/edit', EditPostCommentHandler),
+   ('/blogPost/like', PostLikeHandler),
+   ('/blogPost/unlike', PostLikeHandler)
    ],
   debug=True)

@@ -1,4 +1,5 @@
-import hashlib, uuid
+import hashlib
+import uuid
 
 class HashUtils():
 

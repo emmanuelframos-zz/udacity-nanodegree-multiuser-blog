@@ -1,6 +1,7 @@
-from handler.blog_handler import BlogHandler
+from handler.base import BlogHandler
 
-class Logout(BlogHandler):
+
+class LogoutHandler(BlogHandler):
     """
     Class that handles logout route
     """

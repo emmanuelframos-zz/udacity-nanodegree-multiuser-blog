@@ -45,7 +45,7 @@
         {% for post in posts %}
 				<div id="{{loop.index}}" class="well post-container">              
 				  <h3 class="post-subject">{{post.title}}</h3>
-				  <p class="post-info"><i class="glyphicon glyphicon-time"></i> Posted by {{post.owner.user}} on {{post.created.strftime('%m-%d-%Y %H:%M')}}</p>
+				  <p class="post-info"><i class="glyphicon glyphicon-time"></i> Posted by {{post.author}} on {{post.created.strftime('%m-%d-%Y %H:%M')}}</p>
 				  <hr class="separator">
 				  <p>{{post.content}}</p>
 				  <div class="main-actions">
