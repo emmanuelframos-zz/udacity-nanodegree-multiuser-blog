@@ -1,6 +1,7 @@
 import os
 import webapp2
 import jinja2
+from entities.user import User
 
 class BlogHandler(webapp2.RequestHandler):
     """
@@ -18,3 +19,17 @@ class BlogHandler(webapp2.RequestHandler):
         """
         template = BlogHandler.jinja_env.get_template(html_template).render(**params)
         self.response.out.write(template)
+
+    @staticmethod
+    def is_authenticated(func):
+        """
+        A decorator to confirm if an user is logged in or redirect as needed
+        """
+        def login(self, *args, **kwargs):
+            user_id = self.request.cookies.get('user_id')
+            if user_id and User.is_authenticated(user_id):
+                func(self, *args, **kwargs)
+            else:
+                self.redirect("/login")
+
+        return login
